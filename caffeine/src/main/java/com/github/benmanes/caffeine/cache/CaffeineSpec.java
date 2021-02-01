@@ -269,6 +269,7 @@ public final class CaffeineSpec {
   }
 
   /** Returns a parsed int value. */
+  @SuppressWarnings("nullness")
   static int parseInt(String key, @Nullable String value) {
     requireArgument((value != null) && !value.isEmpty(), "value of key %s was omitted", key);
     try {
@@ -280,6 +281,7 @@ public final class CaffeineSpec {
   }
 
   /** Returns a parsed long value. */
+  @SuppressWarnings("nullness")
   static long parseLong(String key, @Nullable String value) {
     requireArgument((value != null) && !value.isEmpty(), "value of key %s was omitted", key);
     try {
@@ -294,7 +296,7 @@ public final class CaffeineSpec {
   static Duration parseDuration(String key, @Nullable String value) {
     requireArgument((value != null) && !value.isEmpty(), "value of key %s omitted", key);
 
-    @SuppressWarnings("NullAway")
+    @SuppressWarnings({"NullAway", "nullness"})
     boolean isIsoFormat = value.contains("p") || value.contains("P");
     if (isIsoFormat) {
       Duration duration = Duration.parse(value);
@@ -312,7 +314,7 @@ public final class CaffeineSpec {
   /** Returns a parsed {@link TimeUnit} value. */
   static TimeUnit parseTimeUnit(String key, @Nullable String value) {
     requireArgument((value != null) && !value.isEmpty(), "value of key %s omitted", key);
-    @SuppressWarnings("NullAway")
+    @SuppressWarnings({"NullAway", "nullness"})
     char lastChar = Character.toLowerCase(value.charAt(value.length() - 1));
     switch (lastChar) {
       case 'd':
@@ -330,7 +332,7 @@ public final class CaffeineSpec {
   }
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(@Nullable Object o) {
     if (this == o) {
       return true;
     } else if (!(o instanceof CaffeineSpec)) {

@@ -15,6 +15,7 @@
  */
 package com.github.benmanes.caffeine.cache;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
@@ -28,7 +29,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * @param <V> the most general type of values this write can write; for example {@code Object} if
  *        any value is acceptable
  */
-public interface CacheWriter<K, V> {
+public interface CacheWriter<K extends @NonNull Object, V extends @NonNull Object> {
 
   /***
    * Writes the value corresponding to the {@code key} to the external resource. The cache will
